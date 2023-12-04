@@ -23,9 +23,10 @@ public class HiloBilletes extends Thread {
     public void compraBilletes(int persona) {
         
         try {
+            
+            semaforo.acquire(); //bloquea el semaforo
             System.out.println("Persona " + persona + " inicia la compra del billete.");//mensaje en consola para comprobar funcionamiento
             long tiempoInicio = System.currentTimeMillis(); // Marcar el tiempo de inicio
-            semaforo.acquire(); //bloquea el semaforo
             Thread.sleep((int) (Math.random() * 2 + 1) * 1000); //generamos un tiempo aleatorio entre 1 y 3s (lo multiplicamos por 1000 para pasar a milisegundos)
             semaforo.release();//se libera el semaforo
             System.out.println("Persona " + persona + " ha terminado de comprar el billete.");
